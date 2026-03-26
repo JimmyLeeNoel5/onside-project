@@ -1,0 +1,76 @@
+.footer {
+  background: #1a1a2e;
+  border-top: 4px solid #40916c;
+  padding: 3.5rem 4rem;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logoIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #40916c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.logoText {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.links {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.links a {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  transition: color 0.15s;
+}
+
+.links a:hover {
+  color: #52b788;
+}
+
+.copy {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.2);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2.5rem 1.25rem;
+  }
+  .links {
+    gap: 1.5rem;
+  }
+}

@@ -1,0 +1,186 @@
+.section {
+  padding: 9rem 4rem;
+  background: #0a0e1a;
+  position: relative;
+  overflow: hidden;
+  font-family: "Instrument Serif", Georgia, serif;
+}
+
+/* Grid overlay — identical to .featureDark::before */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.08;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 40px,
+      rgba(255, 255, 255, 0.6) 40px,
+      rgba(255, 255, 255, 0.6) 41px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(255, 255, 255, 0.6) 40px,
+      rgba(255, 255, 255, 0.6) 41px
+    );
+  pointer-events: none;
+}
+
+/* Glow orbs */
+.glowOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.glowOrbGreen {
+  width: 400px;
+  height: 400px;
+  background: rgba(64, 145, 108, 0.12);
+  top: -80px;
+  right: -80px;
+}
+.glowOrbGreenBottom {
+  width: 300px;
+  height: 300px;
+  background: rgba(82, 183, 136, 0.07);
+  bottom: -60px;
+  left: 60px;
+}
+
+/* Inner container — above the grid overlay */
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  margin-bottom: 3.5rem;
+}
+
+.sectionLabel {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #52b788;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.05;
+  margin: 0 0 1.25rem;
+  background: linear-gradient(135deg, #ffffff 0%, #52b788 50%, #40916c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* 3-column card grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+/* Cards */
+.card {
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card:hover {
+  border-color: rgba(82, 183, 136, 0.25);
+  background: rgba(82, 183, 136, 0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardIcon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.cardTag {
+  font-style: italic;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.cardDesc {
+  font-style: italic;
+  font-size: 0.92rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin: 0;
+  flex: 1;
+}
+
+.cardCta {
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  transition: text-decoration 0.15s;
+}
+
+.card:hover .cardCta {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .section {
+    padding: 5rem 1.25rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+}

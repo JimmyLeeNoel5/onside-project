@@ -1,0 +1,447 @@
+/* ── Page ──────────────────────────────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: "Instrument Serif", Georgia, serif;
+}
+
+/* ── Top bar ─────────────────────────────────────────────────────────────────
+   Sticky bar matching the EventDetailPage top bar style.
+────────────────────────────────────────────────────────────────────────────── */
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #374151;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+.backBtn:hover {
+  color: #40916c;
+  background: #f0fdf4;
+}
+
+.topBarActions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Draft button — outlined green */
+.draftBtn {
+  padding: 0.5rem 1.1rem;
+  background: transparent;
+  color: #40916c;
+  border: 1.5px solid #40916c;
+  border-radius: 100px;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.draftBtn:hover:not(:disabled) {
+  background: #f0fdf4;
+}
+.draftBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Publish button — solid green pill */
+.publishBtn {
+  padding: 0.5rem 1.25rem;
+  background: #40916c;
+  color: #ffffff;
+  border: none;
+  border-radius: 100px;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.publishBtn:hover:not(:disabled) {
+  background: #2d6a4f;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(64, 145, 108, 0.3);
+}
+.publishBtn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* ── Container ───────────────────────────────────────────────────────────────
+   Centered content with max width and generous padding.
+────────────────────────────────────────────────────────────────────────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+}
+
+/* ── Page header ─────────────────────────────────────────────────────────────
+   Section label, large title, and subtitle — same pattern as EventDetailPage.
+────────────────────────────────────────────────────────────────────────────── */
+.pageHeader {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.pageLabel {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #40916c;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+
+.pageTitle {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-style: italic;
+  font-weight: 400;
+  color: #1a1a2e;
+  line-height: 1.15;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+  font-size: 0.97rem;
+  font-style: italic;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ── Error states ────────────────────────────────────────────────────────────
+   Global submit error and validation summary.
+────────────────────────────────────────────────────────────────────────────── */
+.submitError {
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: #e63946;
+  margin-bottom: 1.5rem;
+}
+
+.errorSummary {
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: #e63946;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Two-column layout ───────────────────────────────────────────────────────
+   Left: main form sections. Right: sticky sidebar card.
+────────────────────────────────────────────────────────────────────────────── */
+.formLayout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* ── Form sections ───────────────────────────────────────────────────────────
+   Each section has a numbered header and a body with fields.
+────────────────────────────────────────────────────────────────────────────── */
+.formSection {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.formSection:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Green circle with the section number */
+.sectionNumber {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0fdf4;
+  border: 1.5px solid #b7e4c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-style: italic;
+  color: #40916c;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.sectionTitle {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.sectionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* ── Field ───────────────────────────────────────────────────────────────────
+   Label + input wrapper. Error message shown below input when present.
+────────────────────────────────────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+/* Row of fields side by side */
+.fieldRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.fieldLabel {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Red asterisk for required fields */
+.required {
+  color: #e63946;
+  margin-left: 2px;
+}
+
+.fieldError {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #e63946;
+}
+
+/* ── Inputs ──────────────────────────────────────────────────────────────────
+   Consistent style for text, number, date, time inputs and selects.
+────────────────────────────────────────────────────────────────────────────── */
+.input,
+.select,
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #f8f9fa;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  outline: none;
+  transition: all 0.15s;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #94a3b8;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: #40916c;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.1);
+}
+
+/* Red border on invalid fields */
+.inputError {
+  border-color: #e63946 !important;
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.08) !important;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Remove default select arrow and add custom one */
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* ── Sidebar card ────────────────────────────────────────────────────────────
+   Sticky card on the right with capacity/fee fields and action buttons.
+────────────────────────────────────────────────────────────────────────────── */
+.formSidebar {
+  position: sticky;
+  top: 80px;
+}
+
+.sidebarCard {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.04),
+    0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.sidebarCardTitle {
+  font-size: 1rem;
+  font-style: italic;
+  color: #1a1a2e;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.sidebarDivider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* Full-width publish button in sidebar */
+.publishBtnFull {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: #40916c;
+  color: #ffffff;
+  border: none;
+  border-radius: 100px;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.publishBtnFull:hover:not(:disabled) {
+  background: #2d6a4f;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(64, 145, 108, 0.35);
+}
+.publishBtnFull:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Full-width draft button in sidebar */
+.draftBtnFull {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  color: #40916c;
+  border: 1.5px solid #40916c;
+  border-radius: 100px;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.draftBtnFull:hover:not(:disabled) {
+  background: #f0fdf4;
+}
+.draftBtnFull:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sidebarNote {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #94a3b8;
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────
+   Below 860px: single column, sidebar moves to bottom.
+────────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .formLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .formSidebar {
+    position: static;
+    order: -1;
+  }
+
+  .topBar {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .container {
+    padding: 2rem 1.25rem 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.75rem;
+  }
+
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+
+  .topBarActions {
+    gap: 0.4rem;
+  }
+
+  .draftBtn,
+  .publishBtn {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.82rem;
+  }
+}

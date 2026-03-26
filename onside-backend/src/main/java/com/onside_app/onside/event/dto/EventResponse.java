@@ -1,0 +1,53 @@
+package com.onside_app.onside.event.dto;
+
+import com.onside_app.onside.common.enums.*;
+
+import java.math.BigDecimal;
+import java.time.*;
+import java.util.UUID;
+
+public record EventResponse(
+        UUID id,
+        String name,
+        String slug,
+        EventType type,
+        String description,
+        GenderCategory genderCategory,
+        SkillLevel skillLevel,
+        String venueName,
+        String addressLine1,
+        String addressLine2,
+        String city,
+        String state,
+        String zipCode,
+        LocalDate startDate,
+        LocalDate endDate,
+        LocalTime startTime,
+        LocalTime endTime,
+        OffsetDateTime registrationOpensAt,
+        OffsetDateTime registrationClosesAt,
+        Short capacity,
+        boolean waitlistEnabled,
+        Short waitlistCapacity,
+        BigDecimal individualFee,
+        BigDecimal teamFee,
+        String feeCurrency,
+        boolean allowsIndividualReg,
+        boolean allowsTeamReg,
+        Short minAge,
+        Short maxAge,
+        String imageUrl,
+        String website,
+        String contactEmail,
+        String contactPhone,
+        boolean isPublished,
+        boolean isCancelled,
+        UUID hostClubId,
+        String hostClubName,
+        UUID leagueId,
+        String leagueName,
+        OffsetDateTime createdAt,
+        OffsetDateTime updatedAt,
+        long confirmedCount,
+        long waitlistedCount
+) {}

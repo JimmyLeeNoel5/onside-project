@@ -1,0 +1,8 @@
+.page {
+  font-family: "Instrument Serif", Georgia, serif;
+  background: #ffffff;
+  color: #1a1a2e;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}

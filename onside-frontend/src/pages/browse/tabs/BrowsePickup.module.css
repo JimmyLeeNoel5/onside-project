@@ -1,0 +1,65 @@
+.zipcodeForm {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.zipcodeWrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.zipcodeIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.zipcodeInput {
+  width: 100%;
+  box-sizing: border-box;
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #111827;
+  outline: none;
+  transition: all 0.15s;
+}
+
+.zipcodeInput::placeholder {
+  color: #9ca3af;
+}
+
+.zipcodeInput:focus {
+  border-color: #40916c;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.1);
+}
+
+.searchBtn {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  background: #40916c;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.searchBtn:hover {
+  background: #2d6a4f;
+}

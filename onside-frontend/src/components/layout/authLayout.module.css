@@ -1,0 +1,72 @@
+.page {
+  min-height: 100vh;
+  width: 100vw; /* add this */
+  background-color: #f0fdf4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  width: 100%;
+  max-width: 440px; /* never wider than 440px */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 36px;
+  height: 36px;
+  background-color: #16a34a; /* green-600 */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoIcon svg {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+}
+
+.logoText {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 800;
+  color: #111827; /* gray-900 */
+  letter-spacing: -0.5px;
+}
+
+.logoText span {
+  color: #16a34a; /* green-600 — the 'side' in Onside */
+}
+
+.footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.875rem; /* 14px */
+  color: #6b7280; /* gray-500 */
+}
+
+.footer a {
+  color: #16a34a; /* green-600 */
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

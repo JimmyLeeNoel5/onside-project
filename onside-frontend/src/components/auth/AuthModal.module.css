@@ -1,0 +1,302 @@
+/* ── Overlay ───────────────────────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Modal card ────────────────────────────────────────────────────────────── */
+.modal {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Close button ──────────────────────────────────────────────────────────── */
+.closeBtn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  color: #374151;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+  padding: 0;
+}
+
+.closeBtn:hover {
+  background: #1a1a2e;
+  color: #ffffff;
+  border-color: #1a1a2e;
+}
+
+/* ── Logo mark ─────────────────────────────────────────────────────────────── */
+.logoMark {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  background: #40916c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.logoText {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: #1a1a2e;
+  letter-spacing: -0.01em;
+}
+
+/* ── Tabs ──────────────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 1.75rem;
+  gap: 4px;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabActive {
+  background: #ffffff;
+  color: #1a1a2e;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Server error ──────────────────────────────────────────────────────────── */
+.serverError {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #dc2626;
+  font-size: 0.875rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  margin-bottom: 1rem;
+}
+
+/* ── Form ──────────────────────────────────────────────────────────────────── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  font-family: "Instrument Serif", Georgia, serif;
+  color: #374151;
+  letter-spacing: 0.01em;
+}
+
+.input {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  color: #1a1a2e;
+  background: #fafafa;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.input:focus {
+  border-color: #40916c;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.1);
+}
+
+.inputError {
+  border-color: #e63946;
+}
+
+.inputError:focus {
+  border-color: #e63946;
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+}
+
+.fieldError {
+  font-size: 0.775rem;
+  color: #e63946;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+}
+
+/* ── Submit button ─────────────────────────────────────────────────────────── */
+.submitBtn {
+  margin-top: 0.5rem;
+  padding: 0.85rem;
+  background: #40916c;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    transform 0.1s,
+    box-shadow 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #2d6a4f;
+  box-shadow: 0 6px 20px rgba(64, 145, 108, 0.3);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ── Spinner ───────────────────────────────────────────────────────────────── */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Switch link ───────────────────────────────────────────────────────────── */
+.switchText {
+  text-align: center;
+  font-size: 0.875rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  color: #6b7280;
+  margin: 0;
+}
+
+.switchLink {
+  background: none;
+  border: none;
+  color: #40916c;
+  font-weight: 600;
+  font-family: "Instrument Serif", Georgia, serif;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+
+.switchLink:hover {
+  color: #2d6a4f;
+  text-decoration: underline;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .modal {
+    padding: 2rem 1.25rem;
+    border-radius: 16px;
+  }
+
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+}

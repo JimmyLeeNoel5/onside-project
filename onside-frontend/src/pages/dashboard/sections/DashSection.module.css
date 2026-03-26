@@ -1,0 +1,791 @@
+/* ── Section wrapper ───────────────────────────────────────────────────────── */
+.section {
+  padding: 2.5rem 2.75rem;
+  max-width: 1100px;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.greeting {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.title {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #0d1117;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.badge {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #40916c;
+  border: 1.5px solid rgba(64, 145, 108, 0.3);
+  background: rgba(64, 145, 108, 0.07);
+  border-radius: 100px;
+  padding: 0.3rem 0.9rem;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────────── */
+.primaryBtn {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: #40916c;
+  border: none;
+  border-radius: 100px;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.primaryBtn:hover {
+  background: #2d6a4f;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(64, 145, 108, 0.3);
+}
+
+.ghostBtn {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.875rem;
+  color: #40916c;
+  background: transparent;
+  border: 1.5px solid rgba(64, 145, 108, 0.35);
+  border-radius: 100px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.ghostBtn:hover {
+  background: #40916c;
+  color: #ffffff;
+  border-color: #40916c;
+}
+
+/* ── Stats grid ─────────────────────────────────────────────────────────────── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.statCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s;
+}
+
+.statCard:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.statValue {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.statLabel {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 0.875rem;
+  color: #374151;
+  margin-bottom: 0.2rem;
+}
+
+.statSub {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+/* ── Two column layout ──────────────────────────────────────────────────────── */
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+/* ── Card ───────────────────────────────────────────────────────────────────── */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.cardTitle {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1rem;
+  color: #0d1117;
+  font-weight: 400;
+}
+
+/* ── Activity feed ──────────────────────────────────────────────────────────── */
+.feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.feedItem:last-child {
+  border-bottom: none;
+}
+
+.feedDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+}
+
+.feedContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.feedText {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.feedTime {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}
+
+/* ── Upcoming matches ───────────────────────────────────────────────────────── */
+.matchList {
+  display: flex;
+  flex-direction: column;
+}
+
+.matchItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.matchItem:last-child {
+  border-bottom: none;
+}
+
+.matchItem:hover {
+  background: #f8fafc;
+}
+
+.matchDate {
+  width: 40px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.matchDay {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.2rem;
+  color: #0d1117;
+  line-height: 1;
+}
+
+.matchMonth {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.matchInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.matchOpponent {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 0.9rem;
+  color: #1e293b;
+}
+
+.matchMeta {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.1rem;
+}
+
+.matchLeague {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.72rem;
+  color: #40916c;
+  margin-top: 0.1rem;
+}
+
+.matchChevron {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+}
+
+/* ── League cards ───────────────────────────────────────────────────────────── */
+.leagueList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.leagueCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s;
+}
+
+.leagueCard:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.leagueTop {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.leagueLogo {
+  font-size: 1.75rem;
+  width: 48px;
+  height: 48px;
+  background: #f8fafc;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.leagueInfo {
+  flex: 1;
+}
+
+.leagueName {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.05rem;
+  color: #0d1117;
+}
+
+.leagueDivision {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+.statusPill {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  border: 1.5px solid;
+  border-radius: 100px;
+  padding: 0.2rem 0.75rem;
+  flex-shrink: 0;
+}
+
+.leagueDivider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+  margin: 1.1rem 0;
+}
+
+.leagueStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.leagueStat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.leagueStatVal {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+.leagueStatLabel {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.leagueFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.1rem;
+}
+
+.seasonTag {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* ── Team cards ─────────────────────────────────────────────────────────────── */
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.teamCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: box-shadow 0.2s;
+}
+
+.teamCard:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.teamHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.teamEmoji {
+  font-size: 1.75rem;
+  width: 46px;
+  height: 46px;
+  background: #f8fafc;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.teamMeta {
+  flex: 1;
+}
+
+.teamName {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1rem;
+  color: #0d1117;
+}
+
+.teamClub {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 0.1rem;
+}
+
+.recruitingBadge {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.7rem;
+  color: #3b82f6;
+  border: 1.5px solid rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.07);
+  border-radius: 100px;
+  padding: 0.2rem 0.6rem;
+  flex-shrink: 0;
+}
+
+.teamTags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.miniTag {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.72rem;
+  color: #475569;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+  padding: 0.15rem 0.6rem;
+  background: #f8fafc;
+}
+
+.teamStatRow {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.teamStat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.teamStatVal {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.teamStatLabel {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.teamLeague {
+  margin-top: auto;
+}
+
+.leagueChip {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  color: #40916c;
+  background: rgba(64, 145, 108, 0.08);
+  border-radius: 8px;
+  padding: 0.3rem 0.7rem;
+}
+
+/* ── Roster table ───────────────────────────────────────────────────────────── */
+.rosterTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.rosterHead {
+  display: grid;
+  grid-template-columns: 40px 1fr 80px;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.72rem;
+  color: #94a3b8;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rosterRow {
+  display: grid;
+  grid-template-columns: 40px 1fr 80px;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  align-items: center;
+  border-radius: 8px;
+  transition: background 0.12s;
+}
+
+.rosterRow:hover {
+  background: #f8fafc;
+}
+
+.rosterRow:last-child {
+  border-bottom: none;
+}
+
+.rosterYou {
+  background: rgba(64, 145, 108, 0.05);
+}
+
+.rosterNum {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.rosterName {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 0.9rem;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.youBadge {
+  font-size: 0.65rem;
+  color: #40916c;
+  border: 1px solid rgba(64, 145, 108, 0.3);
+  border-radius: 100px;
+  padding: 0.1rem 0.5rem;
+  font-style: italic;
+}
+
+.rosterPos {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+/* ── Profile layout ─────────────────────────────────────────────────────────── */
+.profileGrid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.profileCard {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profileAvatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #2d6a4f, #52b788);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
+}
+
+.profileName {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.2rem;
+  color: #0d1117;
+}
+
+.profileHandle {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 0.15rem;
+}
+
+.profileLocation {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-top: 0.35rem;
+}
+
+.profileDivider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+  margin: 1.25rem 0;
+}
+
+.profileStatGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.profileStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.profileStatVal {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.4rem;
+  color: #40916c;
+}
+
+.profileStatLabel {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.profileBioLabel {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  align-self: flex-start;
+  margin-bottom: 0.4rem;
+}
+
+.profileBio {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* ── Profile fields ─────────────────────────────────────────────────────────── */
+.profileFields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.fieldGroup {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fieldGroupTitle {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 0.95rem;
+  color: #0d1117;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fieldLabel {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.fieldInput {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 0.9rem;
+  color: #1e293b;
+  background: #f8fafc;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  transition: all 0.15s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fieldInput:focus {
+  border-color: #40916c;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.1);
+}
+
+.fieldInput:disabled {
+  color: #374151;
+  cursor: default;
+  background: #f1f5f9;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  accent-color: #40916c;
+  width: 15px;
+  height: 15px;
+}

@@ -1,0 +1,426 @@
+/* ── Section wrapper ───────────────────────────────────────────────────────── */
+.feature {
+  padding: 9rem 4rem;
+  background: #ffffff;
+}
+
+.featureAlt {
+  background: #f8f9fa;
+}
+
+.featureDark {
+  background: #0a0e1a;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grid overlay on dark sections */
+.featureDark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.08;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 40px,
+      rgba(255, 255, 255, 0.6) 40px,
+      rgba(255, 255, 255, 0.6) 41px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(255, 255, 255, 0.6) 40px,
+      rgba(255, 255, 255, 0.6) 41px
+    );
+  pointer-events: none;
+}
+
+/* ── Inner grid ────────────────────────────────────────────────────────────── */
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.innerDark {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Section labels ────────────────────────────────────────────────────────── */
+.sectionLabel {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #475569;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.sectionLabelDark {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #52b788;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Tags — light ──────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #40916c;
+  border: 1.5px solid rgba(64, 145, 108, 0.3);
+  border-radius: 100px;
+  padding: 0.25rem 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.tagRed {
+  color: #e63946;
+  border-color: rgba(230, 57, 70, 0.3);
+}
+
+.tagDark {
+  color: #1a1a2e;
+  border-color: rgba(26, 26, 46, 0.25);
+}
+
+/* ── Tags — dark ───────────────────────────────────────────────────────────── */
+.tagDarkGreen {
+  display: inline-block;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #52b788;
+  border: 1.5px solid rgba(82, 183, 136, 0.3);
+  background: rgba(82, 183, 136, 0.08);
+  border-radius: 100px;
+  padding: 0.25rem 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.tagDarkRed {
+  display: inline-block;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #f87171;
+  border: 1.5px solid rgba(248, 113, 113, 0.3);
+  background: rgba(248, 113, 113, 0.08);
+  border-radius: 100px;
+  padding: 0.25rem 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Titles ────────────────────────────────────────────────────────────────── */
+.title {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #1a1a2e;
+  margin: 0 0 1.5rem;
+}
+
+.titleDark {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 0 0 1.5rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #52b788 50%, #40916c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Descriptions ──────────────────────────────────────────────────────────── */
+.desc {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #374151;
+  max-width: 420px;
+  margin: 0 0 2rem;
+}
+
+.descDark {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #cbd5e1;
+  max-width: 420px;
+  margin: 0 0 2rem;
+}
+
+/* ── Buttons — light green ─────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.5px solid rgba(64, 145, 108, 0.5);
+  color: #40916c;
+  padding: 0.65rem 1.75rem;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: #40916c;
+  border-color: #40916c;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(64, 145, 108, 0.25);
+}
+
+/* ── Buttons — light red ───────────────────────────────────────────────────── */
+.btnRed {
+  border-color: rgba(230, 57, 70, 0.5);
+  color: #e63946;
+}
+
+.btnRed:hover {
+  background: #e63946;
+  border-color: #e63946;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(230, 57, 70, 0.25);
+}
+
+/* ── Buttons — light dark ──────────────────────────────────────────────────── */
+.btnDark {
+  border-color: rgba(26, 26, 46, 0.4);
+  color: #1a1a2e;
+}
+
+.btnDark:hover {
+  background: #1a1a2e;
+  border-color: #1a1a2e;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(26, 26, 46, 0.2);
+}
+
+/* ── Buttons — dark green ──────────────────────────────────────────────────── */
+.btnDarkGreen {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.5px solid rgba(82, 183, 136, 0.5);
+  color: #52b788;
+  padding: 0.65rem 1.75rem;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnDarkGreen:hover {
+  background: #40916c;
+  border-color: #40916c;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(64, 145, 108, 0.3);
+}
+
+/* ── Buttons — dark red ────────────────────────────────────────────────────── */
+.btnDarkRed {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.5px solid rgba(248, 113, 113, 0.5);
+  color: #f87171;
+  padding: 0.65rem 1.75rem;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnDarkRed:hover {
+  background: #e63946;
+  border-color: #e63946;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(230, 57, 70, 0.3);
+}
+
+/* ── Image pair — light ────────────────────────────────────────────────────── */
+.images {
+  position: relative;
+  height: 460px;
+  overflow: hidden;
+}
+
+.imgMain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 85%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+}
+
+.imgMain img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.imgMain:hover img {
+  transform: scale(1.03);
+}
+
+.imgSecondary {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 55%;
+  height: 55%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  border: 4px solid #ffffff;
+  outline: 1.5px solid rgba(0, 0, 0, 0.06);
+}
+
+.featureAlt .imgSecondary {
+  border-color: #f8f9fa;
+}
+
+.imgSecondary img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.imgSecondary:hover img {
+  transform: scale(1.05);
+}
+
+/* ── Image pair — dark ─────────────────────────────────────────────────────── */
+.imgMainDark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 85%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.imgMainDark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.imgMainDark:hover img {
+  transform: scale(1.03);
+}
+
+.imgSecondaryDark {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 55%;
+  height: 55%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.imgSecondaryDark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.imgSecondaryDark:hover img {
+  transform: scale(1.05);
+}
+
+/* ── Glow orbs ──────────────────────────────────────────────────────────────── */
+.glowOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glowOrbGreen {
+  width: 400px;
+  height: 400px;
+  background: rgba(64, 145, 108, 0.12);
+  top: -80px;
+  right: -80px;
+}
+
+.glowOrbGreenBottom {
+  width: 300px;
+  height: 300px;
+  background: rgba(82, 183, 136, 0.07);
+  bottom: -60px;
+  left: 60px;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .inner,
+  .innerDark {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .images {
+    height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .feature {
+    padding: 5rem 1.25rem;
+  }
+}

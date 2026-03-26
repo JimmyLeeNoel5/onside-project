@@ -1,0 +1,123 @@
+.section {
+  background: #40916c;
+  padding: 7rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  max-width: 640px;
+}
+
+.sectionLabel {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.title {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 1.25rem;
+}
+
+.sub {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 2.5rem;
+  max-width: 480px;
+}
+
+/* White primary button */
+.btnPrimary {
+  background: #ffffff;
+  color: #40916c;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.btnPrimary:hover {
+  background: #f0fdf4;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Ghost button */
+.btnGhost {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  padding: 0.9rem 1.75rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: "Instrument Serif", Georgia, serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnGhost:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Decorative ball */
+.decorBall {
+  position: absolute;
+  right: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 180px;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .decorBall {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 5rem 1.25rem;
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .btnPrimary,
+  .btnGhost {
+    width: 100%;
+    text-align: center;
+  }
+}

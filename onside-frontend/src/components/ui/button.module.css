@@ -1,0 +1,103 @@
+/* src/components/ui/Button.module.css */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9375rem; /* 15px */
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
+  outline: none;
+  width: 100%;
+}
+
+/* ── Variants ─────────────────────────────────────────────────────────────── */
+
+.primary {
+  background-color: #16a34a; /* green-600 */
+  color: #ffffff;
+  padding: 11px 24px;
+}
+
+.primary:hover:not(:disabled) {
+  background-color: #15803d; /* green-700 */
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(1px); /* subtle press effect */
+}
+
+.secondary {
+  background-color: #ffffff;
+  color: #16a34a;
+  padding: 11px 24px;
+  border: 1.5px solid #16a34a;
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: #f0fdf4; /* green-50 */
+}
+
+.ghost {
+  background-color: transparent;
+  color: #6b7280; /* gray-500 */
+  padding: 11px 24px;
+}
+
+.ghost:hover:not(:disabled) {
+  background-color: #f9fafb; /* gray-50 */
+  color: #111827; /* gray-900 */
+}
+
+/* ── Sizes ────────────────────────────────────────────────────────────────── */
+
+.sm {
+  font-size: 0.8125rem; /* 13px */
+  padding: 7px 16px;
+  border-radius: 6px;
+}
+
+.lg {
+  font-size: 1rem; /* 16px */
+  padding: 13px 28px;
+}
+
+/* ── States ───────────────────────────────────────────────────────────────── */
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.loading {
+  pointer-events: none; /* block clicks while loading */
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.secondary .spinner,
+.ghost .spinner {
+  border-color: rgba(22, 163, 74, 0.3);
+  border-top-color: #16a34a;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
