@@ -21,16 +21,16 @@ public class RsaKeyConfig {
 
     @Bean
     public RSAPrivateKey rsaPrivateKey() throws Exception {
-        String key = resolveKey(jwtProperties.getPrivateKeyPath(), "JWT_PRIVATE_KEY");
-        byte[] decoded = Base64.getDecoder().decode(stripPemHeaders(key));
+        String pem = resolveKey(jwtProperties.getPrivateKeyPath(), "JWT_PRIVATE_KEY");
+        byte[] decoded = Base64.getDecoder().decode(stripPemHeaders(pem));
         return (RSAPrivateKey) KeyFactory.getInstance("RSA")
                 .generatePrivate(new PKCS8EncodedKeySpec(decoded));
     }
 
     @Bean
     public RSAPublicKey rsaPublicKey() throws Exception {
-        String key = resolveKey(jwtProperties.getPublicKeyPath(), "JWT_PUBLIC_KEY");
-        byte[] decoded = Base64.getDecoder().decode(stripPemHeaders(key));
+        String pem = resolveKey(jwtProperties.getPublicKeyPath(), "JWT_PUBLIC_KEY");
+        byte[] decoded = Base64.getDecoder().decode(stripPemHeaders(pem));
         return (RSAPublicKey) KeyFactory.getInstance("RSA")
                 .generatePublic(new X509EncodedKeySpec(decoded));
     }
@@ -38,8 +38,11 @@ public class RsaKeyConfig {
     private String resolveKey(String path, String envVarName) throws Exception {
         String envValue = System.getenv(envVarName);
         if (envValue != null && !envValue.isBlank()) {
-            return envValue;
+            // env var = base64 of the full PEM file, decode to get PEM string
+            byte[] pemBytes = Base64.getDecoder().decode(envValue.trim());
+            return new String(pemBytes);
         }
+        // Local dev — read from classpath
         org.springframework.core.io.ClassPathResource resource =
                 new org.springframework.core.io.ClassPathResource(
                         path.replace("classpath:", ""));
