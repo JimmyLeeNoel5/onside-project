@@ -2,60 +2,57 @@ package com.onside_app.onside.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ResourceLoader;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.security.KeyFactory;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
-import java.util.stream.Collectors;
 
 @Configuration
 public class RsaKeyConfig {
 
     private final JwtProperties jwtProperties;
-    private final ResourceLoader resourceLoader;
 
-    public RsaKeyConfig(JwtProperties jwtProperties, ResourceLoader resourceLoader) {
+    public RsaKeyConfig(JwtProperties jwtProperties) {
         this.jwtProperties = jwtProperties;
-        this.resourceLoader = resourceLoader;
     }
 
     @Bean
     public RSAPrivateKey rsaPrivateKey() throws Exception {
-        String base64 = readPemBody(jwtProperties.getPrivateKeyPath());
-        byte[] decoded = Base64.getDecoder().decode(base64);
-        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(decoded);
-        return (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(spec);
+        String key = resolveKey(jwtProperties.getPrivateKeyPath(), "JWT_PRIVATE_KEY");
+        byte[] decoded = Base64.getDecoder().decode(stripPemHeaders(key));
+        return (RSAPrivateKey) KeyFactory.getInstance("RSA")
+                .generatePrivate(new PKCS8EncodedKeySpec(decoded));
     }
 
     @Bean
     public RSAPublicKey rsaPublicKey() throws Exception {
-        String base64 = readPemBody(jwtProperties.getPublicKeyPath());
-        byte[] decoded = Base64.getDecoder().decode(base64);
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(decoded);
-        return (RSAPublicKey) KeyFactory.getInstance("RSA").generatePublic(spec);
+        String key = resolveKey(jwtProperties.getPublicKeyPath(), "JWT_PUBLIC_KEY");
+        byte[] decoded = Base64.getDecoder().decode(stripPemHeaders(key));
+        return (RSAPublicKey) KeyFactory.getInstance("RSA")
+                .generatePublic(new X509EncodedKeySpec(decoded));
     }
 
-    // ── Read PEM file and return only the Base64 body ─────────────────────────
-    // Skips header (-----BEGIN ...) and footer (-----END ...) lines entirely
-    // then joins the remaining lines into a single Base64 string
-
-    private String readPemBody(String path) throws Exception {
-        org.springframework.core.io.Resource resource =
-                resourceLoader.getResource(path);
-
-        try (InputStream is = resource.getInputStream();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-
-            return reader.lines()
-                    .filter(line -> !line.startsWith("-----"))
-                    .collect(Collectors.joining());
+    private String resolveKey(String path, String envVarName) throws Exception {
+        String envValue = System.getenv(envVarName);
+        if (envValue != null && !envValue.isBlank()) {
+            return envValue;
         }
+        org.springframework.core.io.ClassPathResource resource =
+                new org.springframework.core.io.ClassPathResource(
+                        path.replace("classpath:", ""));
+        try (java.io.InputStream is = resource.getInputStream();
+             java.io.BufferedReader reader =
+                     new java.io.BufferedReader(new java.io.InputStreamReader(is))) {
+            return reader.lines().collect(java.util.stream.Collectors.joining("\n"));
+        }
+    }
+
+    private String stripPemHeaders(String pem) {
+        return pem.lines()
+                .filter(line -> !line.startsWith("-----"))
+                .collect(java.util.stream.Collectors.joining());
     }
 }
