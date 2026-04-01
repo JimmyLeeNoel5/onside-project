@@ -1,0 +1,92 @@
+name: Backend — Test & Deploy
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'onside-backend/**'
+      - '.github/workflows/backend-deploy.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'onside-backend/**'
+
+jobs:
+  test-and-deploy:
+    name: Test & Deploy to Elastic Beanstalk
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: onside-backend
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: onside_us_soccer
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+          cache: maven
+
+      - name: Create schema
+        run: |
+          PGPASSWORD=postgres psql -h localhost -U postgres -d onside_us_soccer \
+            -c "CREATE SCHEMA IF NOT EXISTS onside_app_dev;"
+
+      - name: Run tests
+        env:
+          DB_URL: jdbc:postgresql://localhost:5432/onside_us_soccer?currentSchema=onside_app_dev
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+          MAIL_USERNAME: test@test.com
+          MAIL_PASSWORD: test
+          MAIL_TO: test@test.com
+          MAIL_FROM: test@test.com
+        run: ./mvnw test --no-transfer-progress
+
+      - name: Build JAR
+        run: ./mvnw clean package -DskipTests --no-transfer-progress
+
+      - name: Get short SHA
+        id: vars
+        run: echo "sha=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_OUTPUT
+
+      - name: Configure AWS credentials
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy to Elastic Beanstalk
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.EB_APP_NAME }}
+          environment_name: ${{ secrets.EB_ENV_NAME }}
+          region: ${{ secrets.AWS_REGION }}
+          version_label: onside-${{ steps.vars.outputs.sha }}
+          deployment_package: onside-backend/target/onside-0.0.1-SNAPSHOT.jar
+
+      - name: Done
+        run: echo "✅ Deployed onside-${{ steps.vars.outputs.sha }}"
