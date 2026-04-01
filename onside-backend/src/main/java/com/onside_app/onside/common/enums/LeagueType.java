@@ -11,11 +11,13 @@ package com.onside_app.onside.common.enums;
  * the column to the leagues table.
  */
 public enum LeagueType {
-    PROFESSIONAL,   // MLS, USL, NWSL etc.
+    PROFESSIONAL,   // MLS, NWSL, USL Championship etc.
+    SEMI_PRO,       // USL League One, USL League Two, UPSL etc.
+    AMATEUR,        // Competitive amateur, USASA etc.
+    RECREATIONAL,   // Adult rec/Sunday/social leagues
     COLLEGE,        // NCAA D1/D2/D3, NAIA, club college
     HIGH_SCHOOL,    // State associations, HS leagues
     YOUTH,          // U6 through U18 club/recreational
     INDOOR,         // Futsal, indoor soccer, 5-a-side
-    RECREATIONAL,   // Adult amateur/Sunday/social leagues
     OTHER
 }

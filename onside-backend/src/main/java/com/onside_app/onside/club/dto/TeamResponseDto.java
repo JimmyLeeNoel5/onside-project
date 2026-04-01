@@ -2,7 +2,9 @@ package com.onside_app.onside.club.dto;
 
 import com.onside_app.onside.club.entity.Team;
 import com.onside_app.onside.common.enums.GenderCategory;
+import com.onside_app.onside.common.enums.LeagueType;
 import com.onside_app.onside.common.enums.SkillLevel;
+import com.onside_app.onside.league.entity.League;
 
 import java.util.UUID;
 
@@ -24,9 +26,28 @@ public record TeamResponseDto(
         String logoUrl,
         String homeVenue,
         boolean isRecruiting,
-        boolean isActive
+        boolean isActive,
+        LeagueType leagueType,
+        String leagueName,
+        String leagueSlug
 ) {
     public static TeamResponseDto from(Team team) {
+        // Prefer current season's league; fall back to any active season's league
+        League activeLeague = team.getSeasonTeams().stream()
+                .filter(st -> st.isActive() && st.getSeason().isCurrent())
+                .map(st -> st.getSeason().getLeague())
+                .findFirst()
+                .orElseGet(() -> team.getSeasonTeams().stream()
+                        .filter(st -> st.isActive() && st.getSeason().isActive())
+                        .map(st -> st.getSeason().getLeague())
+                        .findFirst()
+                        .orElse(null));
+
+        // League's type takes priority; fall back to the team's own standalone leagueType
+        LeagueType effectiveLeagueType = activeLeague != null
+                ? activeLeague.getLeagueType()
+                : team.getLeagueType();
+
         return new TeamResponseDto(
                 team.getId(),
                 team.getName(),
@@ -45,7 +66,10 @@ public record TeamResponseDto(
                 team.getLogoUrl(),
                 team.getHomeVenue(),
                 team.isRecruiting(),
-                team.isActive()
+                team.isActive(),
+                effectiveLeagueType,
+                activeLeague != null ? activeLeague.getName() : null,
+                activeLeague != null ? activeLeague.getSlug() : null
         );
     }
 }

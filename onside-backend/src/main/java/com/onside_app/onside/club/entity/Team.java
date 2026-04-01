@@ -1,6 +1,7 @@
 package com.onside_app.onside.club.entity;
 
 import com.onside_app.onside.common.enums.GenderCategory;
+import com.onside_app.onside.common.enums.LeagueType;
 import com.onside_app.onside.common.enums.SkillLevel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -51,6 +52,11 @@ public class Team {
             columnDefinition = "skill_level")
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private SkillLevel skillLevel;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "league_type", columnDefinition = "league_type")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    private LeagueType leagueType;
 
     @Column(length = 100)
     private String city;

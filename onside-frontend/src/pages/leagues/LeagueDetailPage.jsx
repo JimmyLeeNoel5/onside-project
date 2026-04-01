@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axiosClient from "../../api/axiosClient";
 import styles from "./LeagueDetailPage.module.css";
 
 // Maps GenderCategory enum values to readable labels
 const GENDER_LABELS = {
-  MALE: "Men's",
-  FEMALE: "Women's",
+  MEN: "Men's",
+  WOMEN: "Women's",
+  YOUTH_BOYS: "Youth Boys",
+  YOUTH_GIRLS: "Youth Girls",
   COED: "Co-Ed",
   OPEN: "Open",
 };
@@ -42,8 +44,11 @@ export default function LeagueDetailPage() {
   const [league, setLeague] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [teams, setTeams] = useState([]);
+  const [teamsLoading, setTeamsLoading] = useState(true);
+  const [teamSearch, setTeamSearch] = useState("");
+  const [stateFilter, setStateFilter] = useState("All States");
 
-  // Fetch league from GET /leagues/:slug (public endpoint)
   useEffect(() => {
     async function fetchLeague() {
       try {
@@ -55,8 +60,37 @@ export default function LeagueDetailPage() {
         setLoading(false);
       }
     }
+    async function fetchTeams() {
+      try {
+        const res = await axiosClient.get(`/leagues/${slug}/teams`);
+        setTeams(Array.isArray(res.data) ? res.data : []);
+      } catch {
+        setTeams([]);
+      } finally {
+        setTeamsLoading(false);
+      }
+    }
     fetchLeague();
+    fetchTeams();
   }, [slug]);
+
+  const stateOptions = useMemo(() => {
+    const unique = [...new Set(teams.map((t) => t.state).filter(Boolean))].sort();
+    return ["All States", ...unique];
+  }, [teams]);
+
+  const filteredTeams = useMemo(() => {
+    return teams.filter((t) => {
+      const matchState = stateFilter === "All States" || t.state === stateFilter;
+      const q = teamSearch.toLowerCase();
+      const matchSearch =
+        !q ||
+        t.name?.toLowerCase().includes(q) ||
+        t.clubName?.toLowerCase().includes(q) ||
+        t.city?.toLowerCase().includes(q);
+      return matchState && matchSearch;
+    });
+  }, [teams, stateFilter, teamSearch]);
 
   if (loading) {
     return (
@@ -149,6 +183,79 @@ export default function LeagueDetailPage() {
                 <p className={styles.description}>{league.description}</p>
               </section>
             )}
+
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>
+                Teams
+                {!teamsLoading && teams.length > 0 && (
+                  <span className={styles.teamCount}>{filteredTeams.length} / {teams.length}</span>
+                )}
+              </h2>
+              {teamsLoading ? (
+                <p className={styles.emptyTeams}>Loading teams...</p>
+              ) : teams.length === 0 ? (
+                <p className={styles.emptyTeams}>No teams enrolled in the current season.</p>
+              ) : (
+                <>
+                  <div className={styles.teamFilterBar}>
+                    <div className={styles.teamSearchWrap}>
+                      <svg className={styles.teamSearchIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
+                      </svg>
+                      <input
+                        className={styles.teamSearchInput}
+                        placeholder="Search teams..."
+                        value={teamSearch}
+                        onChange={(e) => setTeamSearch(e.target.value)}
+                      />
+                    </div>
+                    <div className={styles.teamFilterGroup}>
+                      <label className={styles.teamFilterLabel}>State</label>
+                      <select
+                        className={styles.teamFilterSelect}
+                        value={stateFilter}
+                        onChange={(e) => setStateFilter(e.target.value)}
+                      >
+                        {stateOptions.map((s) => <option key={s}>{s}</option>)}
+                      </select>
+                    </div>
+                  </div>
+
+                  {filteredTeams.length === 0 ? (
+                    <div className={styles.emptyTeams}>
+                      No teams match your filters.
+                      <button className={styles.resetBtn} onClick={() => { setTeamSearch(""); setStateFilter("All States"); }}>Reset</button>
+                    </div>
+                  ) : (
+                    <div className={styles.teamGrid}>
+                      {filteredTeams.map((t) => (
+                        <div
+                          key={t.id}
+                          className={styles.teamCard}
+                          onClick={() => navigate(`/teams/${t.clubSlug}/${t.slug}`)}
+                        >
+                          <div className={styles.teamCardInitial}>
+                            {t.name?.[0] || "T"}
+                          </div>
+                          <div className={styles.teamCardBody}>
+                            <div className={styles.teamCardName}>{t.name}</div>
+                            {t.clubName && t.clubName !== t.name && (
+                              <div className={styles.teamCardClub}>{t.clubName}</div>
+                            )}
+                            {(t.city || t.state) && (
+                              <div className={styles.teamCardLocation}>
+                                📍 {[t.city, t.state].filter(Boolean).join(", ")}
+                              </div>
+                            )}
+                          </div>
+                          <span className={styles.teamCardArrow}>→</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </section>
 
             <section className={styles.section}>
               <h2 className={styles.sectionTitle}>League Info</h2>

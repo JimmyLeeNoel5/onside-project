@@ -80,6 +80,9 @@ public class SecurityConfig {
                                 "/events/**",
                                 "/leagues/**",
                                 "/teams/**",
+                                "/clubs/*/teams",
+                                "/clubs/*/teams/*/roster",
+                                "/clubs/*/teams/*",
                                 "/coaches/**",
                                 "/search/**"
                         ).permitAll()

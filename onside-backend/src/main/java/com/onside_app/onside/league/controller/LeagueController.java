@@ -3,6 +3,8 @@ package com.onside_app.onside.league.controller;
 import com.onside_app.onside.common.enums.GenderCategory;
 import com.onside_app.onside.common.enums.LeagueType;
 import com.onside_app.onside.common.enums.SkillLevel;
+import com.onside_app.onside.club.dto.TeamResponseDto;
+import com.onside_app.onside.club.service.TeamService;
 import com.onside_app.onside.league.dto.LeagueRequestDto;
 import com.onside_app.onside.league.dto.LeagueResponseDto;
 import com.onside_app.onside.league.service.LeagueService;
@@ -24,9 +26,11 @@ import java.util.List;
 public class LeagueController {
 
     private final LeagueService leagueService;
+    private final TeamService teamService;
 
-    public LeagueController(LeagueService leagueService) {
+    public LeagueController(LeagueService leagueService, TeamService teamService) {
         this.leagueService = leagueService;
+        this.teamService = teamService;
     }
 
     // ── GET /leagues/mine ──────────────────────────────────────────────────────
@@ -81,6 +85,14 @@ public class LeagueController {
             @PathVariable String slug) {
 
         return ResponseEntity.ok(leagueService.getLeagueBySlug(slug));
+    }
+
+    // ── GET /leagues/{slug}/teams ──────────────────────────────────────────────
+
+    @Operation(summary = "Get teams in a league", description = "Returns teams enrolled in the current season of this league.")
+    @GetMapping("/{slug}/teams")
+    public ResponseEntity<List<TeamResponseDto>> getLeagueTeams(@PathVariable String slug) {
+        return ResponseEntity.ok(teamService.getTeamsByLeague(slug));
     }
 
     // ── POST /leagues ──────────────────────────────────────────────────────────

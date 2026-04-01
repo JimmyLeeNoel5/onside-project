@@ -111,6 +111,14 @@ public class TeamService {
         return teams.stream().map(TeamResponseDto::from).toList();
     }
 
+    // ── Get teams by league ────────────────────────────────────────────────────
+
+    @Transactional(readOnly = true)
+    public List<TeamResponseDto> getTeamsByLeague(String leagueSlug) {
+        return teamRepository.findByLeagueSlug(leagueSlug)
+                .stream().map(TeamResponseDto::from).toList();
+    }
+
     // ── Search teams ───────────────────────────────────────────────────────────
 
     @Transactional(readOnly = true)
@@ -171,6 +179,7 @@ public class TeamService {
                 .slug(slug)
                 .genderCategory(request.genderCategory())
                 .skillLevel(request.skillLevel())
+                .leagueType(request.leagueType())
                 .description(request.description())
                 .city(request.city())
                 .state(request.state() != null
@@ -217,6 +226,7 @@ public class TeamService {
                 ? request.shortName().strip() : null);
         team.setGenderCategory(request.genderCategory());
         team.setSkillLevel(request.skillLevel());
+        team.setLeagueType(request.leagueType());
         team.setDescription(request.description());
         team.setCity(request.city());
         team.setState(request.state() != null

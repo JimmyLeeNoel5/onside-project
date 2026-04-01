@@ -5,8 +5,10 @@ import styles from "./TeamDetailPage.module.css";
 
 // Maps GenderCategory enum to readable labels
 const GENDER_LABELS = {
-  MALE: "Men's",
-  FEMALE: "Women's",
+  MEN: "Men's",
+  WOMEN: "Women's",
+  YOUTH_BOYS: "Youth Boys",
+  YOUTH_GIRLS: "Youth Girls",
   COED: "Co-Ed",
   OPEN: "Open",
 };

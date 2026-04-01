@@ -4,8 +4,8 @@ import axiosClient from "../../../api/axiosClient";
 import styles from "./BrowseTab.module.css";
 
 const GENDER_LABEL = {
-  MALE: "Men's",
-  FEMALE: "Women's",
+  MEN: "Men's",
+  WOMEN: "Women's",
   COED: "Co-Ed",
   OPEN: "Open",
 };
@@ -20,8 +20,8 @@ const LEVEL_LABEL = {
 };
 
 const SUBTAB_GENDER_MAP = {
-  "indoor-mens": "MALE",
-  "indoor-womens": "FEMALE",
+  "indoor-mens": "MEN",
+  "indoor-womens": "WOMEN",
   "indoor-coed": "COED",
 };
 

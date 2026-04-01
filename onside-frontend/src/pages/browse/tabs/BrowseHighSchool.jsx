@@ -4,8 +4,10 @@ import axiosClient from "../../../api/axiosClient";
 import styles from "./BrowseTab.module.css";
 
 const GENDER_LABEL = {
-  MALE: "Boys",
-  FEMALE: "Girls",
+  YOUTH_BOYS: "Boys",
+  YOUTH_GIRLS: "Girls",
+  MEN: "Men's",
+  WOMEN: "Women's",
   COED: "Co-Ed",
   OPEN: "Open",
 };
@@ -20,8 +22,8 @@ const LEVEL_LABEL = {
 };
 
 const SUBTAB_GENDER_MAP = {
-  "hs-boys": "MALE",
-  "hs-girls": "FEMALE",
+  "hs-boys": "YOUTH_BOYS",
+  "hs-girls": "YOUTH_GIRLS",
 };
 
 const CONTENT_TABS = ["Programs", "Events"];

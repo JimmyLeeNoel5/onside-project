@@ -5,8 +5,10 @@ import styles from "./BrowseTab.module.css";
 
 // Maps GenderCategory enum values to readable labels
 const GENDER_LABEL = {
-  MALE: "Men's",
-  FEMALE: "Women's",
+  MEN: "Men's",
+  WOMEN: "Women's",
+  YOUTH_BOYS: "Youth Boys",
+  YOUTH_GIRLS: "Youth Girls",
   COED: "Co-Ed",
   OPEN: "Open",
 };
@@ -23,8 +25,10 @@ const LEVEL_LABEL = {
 
 // Emoji assigned per gender category for visual variety on cards
 const GENDER_EMOJI = {
-  MALE: "🔵",
-  FEMALE: "🟣",
+  MEN: "🔵",
+  WOMEN: "🟣",
+  YOUTH_BOYS: "🔵",
+  YOUTH_GIRLS: "🟣",
   COED: "🔴",
   OPEN: "🟢",
 };

@@ -4,24 +4,29 @@ import axiosClient from "../../../api/axiosClient";
 import styles from "./BrowseTab.module.css";
 
 const GENDER_LABEL = {
-  MALE: "Men's",
-  FEMALE: "Women's",
+  MEN: "Men's",
+  WOMEN: "Women's",
+  YOUTH_BOYS: "Youth Boys",
+  YOUTH_GIRLS: "Youth Girls",
   COED: "Co-Ed",
   OPEN: "Open",
 };
 
-const LEVEL_LABEL = {
-  RECREATIONAL: "Recreational",
-  COMPETITIVE: "Competitive",
-  INTERMEDIATE: "Intermediate",
-  SEMI_PRO: "Semi-Pro",
+const LEAGUE_TYPE_LABEL = {
   PROFESSIONAL: "Professional",
-  ELITE: "Elite",
+  SEMI_PRO: "Semi-Pro",
+  AMATEUR: "Amateur",
+  RECREATIONAL: "Recreational",
+  COLLEGE: "College",
+  HIGH_SCHOOL: "High School",
+  YOUTH: "Youth",
+  INDOOR: "Indoor",
+  OTHER: "Other",
 };
 
 const SUBTAB_GENDER_MAP = {
-  "leagues-mens": "MALE",
-  "leagues-womens": "FEMALE",
+  "leagues-mens": "MEN",
+  "leagues-womens": "WOMEN",
 };
 
 const SUBCHILD_TAB_MAP = {
@@ -33,7 +38,7 @@ const SUBCHILD_TAB_MAP = {
 const CONTENT_TABS = ["Leagues", "Teams", "Events"];
 const STATUSES = ["All Statuses", "Active", "Inactive"];
 const EVENT_STATUSES = ["All Statuses", "Upcoming", "Open", "Filling Fast", "Closed"];
-const LEVELS = ["All Levels", "Professional", "Semi-Pro", "Amateur", "Recreational"];
+const LEVELS = ["All Levels", "Professional", "Semi-Pro", "Amateur", "Recreational", "College", "High School", "Youth", "Indoor", "Other"];
 
 export default function BrowseLeagues({ subtab, subchild, initialTab }) {
   const navigate = useNavigate();
@@ -195,7 +200,7 @@ export default function BrowseLeagues({ subtab, subchild, initialTab }) {
 
   const filteredLeagues = leagues.filter((l) => {
     const leagueStatusVal = l.isActive ? "Active" : "Inactive";
-    const levelLabel = LEVEL_LABEL[l.skillLevel] || l.skillLevel || "";
+    const levelLabel = LEAGUE_TYPE_LABEL[l.leagueType] || l.leagueType || "";
     const matchSearch =
       l.name?.toLowerCase().includes(leagueSearch.toLowerCase()) ||
       l.shortName?.toLowerCase().includes(leagueSearch.toLowerCase());
@@ -366,7 +371,7 @@ export default function BrowseLeagues({ subtab, subchild, initialTab }) {
             <div className={styles.grid}>
               {filteredLeagues.map((l) => {
                 const genderLabel = GENDER_LABEL[l.genderCategory] || l.genderCategory || "";
-                const levelLabel = LEVEL_LABEL[l.skillLevel] || l.skillLevel || "";
+                const levelLabel = LEAGUE_TYPE_LABEL[l.leagueType] || l.leagueType || "";
                 const isActive = l.isActive !== false;
                 return (
                   <div key={l.id} className={styles.card} onClick={() => navigate(`/leagues/${l.slug}`)}>
@@ -436,7 +441,7 @@ export default function BrowseLeagues({ subtab, subchild, initialTab }) {
             <div className={styles.grid}>
               {filteredTeams.map((t) => {
                 const gLabel = GENDER_LABEL[t.genderCategory] || t.genderCategory || "";
-                const lLabel = LEVEL_LABEL[t.skillLevel] || t.skillLevel || "";
+                const lLabel = LEAGUE_TYPE_LABEL[t.leagueType] || t.leagueType || "";
                 return (
                   <div key={t.id} className={styles.card} onClick={() => navigate(`/teams/${t.clubSlug}/${t.slug}`)}>
                     <div className={styles.cardTop}>
@@ -451,9 +456,10 @@ export default function BrowseLeagues({ subtab, subchild, initialTab }) {
                     </div>
                     <div className={styles.cardMeta}>
                       {(t.city || t.state) && <span>📍 {[t.city, t.state].filter(Boolean).join(", ")}</span>}
+                      {t.leagueName && <span>🏆 {t.leagueName}</span>}
                     </div>
                     <div className={styles.cardFooter}>
-                      <span className={styles.cardFee}>{lLabel}</span>
+                      <span className={styles.cardFee}>{lLabel || "—"}</span>
                       <button className={styles.cardBtn} onClick={(e) => { e.stopPropagation(); navigate(`/teams/${t.clubSlug}/${t.slug}`); }}>View Team →</button>
                     </div>
                   </div>

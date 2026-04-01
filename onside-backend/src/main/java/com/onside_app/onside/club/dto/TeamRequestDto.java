@@ -1,6 +1,7 @@
 package com.onside_app.onside.club.dto;
 
 import com.onside_app.onside.common.enums.GenderCategory;
+import com.onside_app.onside.common.enums.LeagueType;
 import com.onside_app.onside.common.enums.SkillLevel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,6 +21,8 @@ public record TeamRequestDto(
 
         @NotNull(message = "Skill level is required")
         SkillLevel skillLevel,
+
+        LeagueType leagueType,
 
         String description,
 

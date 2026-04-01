@@ -95,4 +95,18 @@ public interface TeamRepository extends JpaRepository<Team, UUID> {
         WHERE t.id = :id
         """)
     Optional<Team> findByIdWithClub(@Param("id") UUID id);
+
+    // ── Teams by league (via current/active season) ────────────────────────────
+
+    @Query("""
+        SELECT DISTINCT t FROM Team t
+        JOIN t.seasonTeams st
+        JOIN st.season s
+        JOIN s.league l
+        WHERE l.slug = :leagueSlug
+        AND st.isActive = true
+        AND (s.isCurrent = true OR s.isActive = true)
+        ORDER BY t.name ASC
+        """)
+    List<Team> findByLeagueSlug(@Param("leagueSlug") String leagueSlug);
 }
