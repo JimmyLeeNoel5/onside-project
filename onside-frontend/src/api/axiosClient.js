@@ -15,8 +15,10 @@ export const clearAuth = () => {
 
 // ── Base instance ──────────────────────────────────────────────────────────────
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api/v1";
+
 const axiosClient = axios.create({
-  baseURL: "/api/v1",
+  baseURL: BASE_URL,
   headers: { "Content-Type": "application/json" },
 });
 
@@ -61,7 +63,7 @@ const refreshAccessToken = async () => {
   const refreshToken = localStorage.getItem("refreshToken");
   if (!refreshToken) throw new Error("No refresh token");
 
-  const response = await axios.post("/api/v1/auth/refresh", { refreshToken });
+  const response = await axios.post(`${BASE_URL}/auth/refresh`, { refreshToken });
   const { accessToken, refreshToken: newRefreshToken } = response.data;
 
   setAccessToken(accessToken);
