@@ -84,7 +84,8 @@ public class SecurityConfig {
                                 "/clubs/*/teams/*/roster",
                                 "/clubs/*/teams/*",
                                 "/coaches/**",
-                                "/search/**"
+                                "/search/**",
+                                "/stats"
                         ).permitAll()
 
                         // Actuator health check

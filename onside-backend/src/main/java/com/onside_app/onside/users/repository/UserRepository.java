@@ -14,6 +14,10 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
 
+    // ── Stats ──────────────────────────────────────────────────────────────────
+
+    long countByIsActiveTrue();
+
     // ── Lookup ─────────────────────────────────────────────────────────────────
 
     Optional<User> findByEmailIgnoreCase(String email);

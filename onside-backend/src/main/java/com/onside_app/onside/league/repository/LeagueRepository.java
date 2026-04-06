@@ -75,6 +75,10 @@ public interface LeagueRepository extends JpaRepository<League, UUID> {
     List<League> findByLeagueTypeAndGenderCategoryAndSkillLevelAndIsActiveTrueOrderByNameAsc(
             LeagueType leagueType, GenderCategory genderCategory, SkillLevel skillLevel);
 
+    // ── Stats ──────────────────────────────────────────────────────────────────
+
+    long countByIsActiveTrue();
+
     // ── Search ─────────────────────────────────────────────────────────────────
 
     @Query("""

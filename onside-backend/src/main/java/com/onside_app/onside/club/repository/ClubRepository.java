@@ -27,6 +27,13 @@ public interface ClubRepository extends JpaRepository<Club, UUID> {
 
     List<Club> findByIsVerifiedTrueAndIsActiveTrueOrderByNameAsc();
 
+    // ── Stats ──────────────────────────────────────────────────────────────────
+
+    long countByIsActiveTrue();
+
+    @Query("SELECT COUNT(DISTINCT c.state) FROM Club c WHERE c.isActive = true AND c.state IS NOT NULL")
+    long countDistinctStates();
+
     // ── Search by name ─────────────────────────────────────────────────────────
 
     @Query("""

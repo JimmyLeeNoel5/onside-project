@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axiosClient from "../../../api/axiosClient";
 import styles from "./HeroSection.module.css";
 
 export default function HeroSection({ onLogin, onRegister }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    axiosClient.get("/stats").then((res) => setStats(res.data)).catch(() => {});
+  }, []);
 
   return (
     <section className={styles.hero}>
@@ -74,10 +80,10 @@ export default function HeroSection({ onLogin, onRegister }) {
         {/* Stats strip */}
         <div className={styles.stats}>
           {[
-            ["500+", "Leagues"],
-            ["2,000+", "Clubs"],
-            ["10,000+", "Players"],
-            ["48", "States"],
+            [stats ? stats.leagues.toLocaleString() : "—", "Leagues"],
+            [stats ? stats.clubs.toLocaleString() : "—", "Clubs"],
+            [stats ? stats.players.toLocaleString() : "—", "Players"],
+            [stats ? stats.states.toLocaleString() : "—", "States"],
           ].map(([num, label]) => (
             <div key={label} className={styles.stat}>
               <span className={styles.statNum}>{num}</span>
